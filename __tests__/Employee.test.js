@@ -1,4 +1,3 @@
-const { expect, test } = require("@jest/globals");
 const Employee = require("../lib/Employee");
 
 test('create an employee object', () => {
@@ -6,17 +5,17 @@ test('create an employee object', () => {
   expect(typeof(employee)).toBe("object");
 });
 
-test("set the employee's name", () => {
+test("check the employee's name", () => {
     const employee = new Employee('Dave');
     expect(employee.name).toBe('Dave');
 });
 
-test("set the employee's id", () => {
+test("check the employee's id", () => {
     const employee = new Employee('Dave', 100);
     expect(employee.id).toBe(100);
 });
 
-test("set the employee's email", () => {
+test("check the employee's email", () => {
     const employee = new Employee('Dave', 1, "test@test.com");
     expect(employee.email).toBe("test@test.com");
 });
