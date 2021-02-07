@@ -1,0 +1,48 @@
+:root {
+    --fontcolor: #360568;
+    --bodygradient: linear-gradient(0deg, #b8d0eb 10%, #b298dc 60%, #b8d0eb 90%);
+    --jumbogradient: linear-gradient(0deg, #512982 16%, #b298dc 52%, #512982 90%);
+    --cardgradient: linear-gradient(0deg, #512982 16%, #3a1163 52%, #512982 90%);
+    --cardbody: #c5b2e2;
+    --noto: 'Noto Serif', serif;
+}
+
+
+.jumbotron {
+    color: var(--fontcolor);
+    background-image: var(--jumbogradient);
+}
+
+body {
+   display: flex; 
+   flex-direction: column;
+   font-family: var(--noto);
+   background-image: var(--bodygradient);
+   background-attachment: fixed;
+   color: var(--fontcolor);
+}
+
+.role {
+    max-width: 100%;
+    margin: auto;
+}
+
+.row {
+    row-gap: 15px;
+}
+
+.card {
+    background-image: var(--cardgradient);
+}
+
+.card-body {
+    color: var(--cardbody);
+}
+
+
+/* media query for screen = < 575px */
+@media screen and (max-width: 575px) {
+    .role {
+        flex-basis: 33.3333%;
+    }
+}

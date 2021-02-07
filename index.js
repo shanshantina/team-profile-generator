@@ -21,17 +21,41 @@ const promptUser = () => {
         {
             type: 'input',
             name: 'name',
-            message: "What's the employee's name?"
+            message: "What's the employee's name?",
+            validate: nameInput => {
+                if (nameInput) {
+                  return true;
+                } else {
+                  console.log("Please enter emplyee's name!");
+                  return false;
+                }
+            }
         },
         {
             type: 'input',
             name: 'email',
-            message: "What's the employee's email address?"
+            message: "What's the employee's email address?",
+            validate: emailInput => {
+                if (emailInput) {
+                  return true;
+                } else {
+                  console.log("Please enter emplyee's email address!");
+                  return false;
+                }
+            }
         },
         {
-            type: 'number',
+            type: 'input',
             name: 'id',
-            message: "What's the employee's id number?"
+            message: "What's the employee's id number?",
+            validate: idInput => {
+                if (idInput) {
+                  return true;
+                } else {
+                  console.log("Please enter emplyee's id number!");
+                  return false;
+                }
+            }
         },
         {
             type: 'list',
@@ -47,16 +71,23 @@ const promptUser = () => {
             case 'Manager':
                 inquirer.prompt([
                     {
-                        type: 'number',
+                        type: 'input',
                         name: 'office',
-                        message: "Please input manager's office number"
+                        message: "Please input manager's office number",
+                        validate: officeInput => {
+                            if (officeInput) {
+                              return true;
+                            } else {
+                              console.log("Please enter manager's office number!");
+                              return false;
+                            }
+                        }
                     }
                 ])
                 // push the manager information to employees array
                 .then(function(res) {
                     const officeNumber = res.office;
-                    console.log(officeNumber);
-                    const manager = new Manager(response.name, response.email, response.id, officeNumber, 'Manager');
+                    const manager = new Manager(response.name, response.id, response.email, officeNumber, 'Manager');
                     employees.push(manager);
                 }) 
                 .then(function() {
@@ -69,13 +100,21 @@ const promptUser = () => {
                     {
                         type: 'input',
                         name: 'github',
-                        message: "Please input engineer's Github username"
+                        message: "Please input engineer's Github username",
+                        validate: githubInput => {
+                            if (githubInput) {
+                              return true;
+                            } else {
+                              console.log("Please enter engineer's Github username!");
+                              return false;
+                            }
+                        }
                     }
                 ])
                 // push the engineer information to employees array
                 .then(function(res) {
                     const userName = res.github;
-                    const engineer = new Engineer(response.name, response.email, response.id, userName, 'Engineer');
+                    const engineer = new Engineer(response.name, response.id, response.email, userName, 'Engineer');
                     employees.push(engineer);
                 })
                 .then(function() {
@@ -88,13 +127,21 @@ const promptUser = () => {
                     {
                         type: 'input',
                         name: 'school',
-                        message: "Please input intern's school"
+                        message: "Please input intern's school",
+                        validate: schoolInput => {
+                            if (schoolInput) {
+                              return true;
+                            } else {
+                              console.log("Please enter intern's school!");
+                              return false;
+                            }
+                        }
                     }
                 ])
                 // push the intern information to employees array
                 .then(function(res) {
                     const school = res.school;
-                    const intern = new Intern(response.name, response.email, response.id, school, 'Intern');
+                    const intern = new Intern(response.name, response.id, response.email, school, 'Intern');
                     employees.push(intern);
                 })
                 .then(function() {
