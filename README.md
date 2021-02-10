@@ -1,11 +1,11 @@
   # Team Profile Generator 
 
   
-  ![License Badge](https://img.shields.io/badge/License-MIT-brightgreen.svg) ![Language](https://img.shields.io/github/languages/count/shanshantina/team-profile-generator?style=plastic&logo=appveyor&color=important&color=ff69b4) ![Language](https://img.shields.io/github/languages/top/shanshantina/team-profile-generator?style=flat&logo=appveyor&color=blueviolet)
+  ![License Badge](https://img.shields.io/badge/License-MIT-brightgreen.svg) ![Language](https://img.shields.io/github/languages/count/shanshantina/team-profile-generator?style=plastic&logo=appveyor&color=ff69b4) ![Language](https://img.shields.io/github/languages/top/shanshantina/team-profile-generator?style=flat&logo=appveyor&color=blueviolet)
   
 
   ## Description
-  This is a team profile generator which user can quickly and easily generate a team profile webpage with all the team members’ summary by using a Command line. This application is created by JavaScript and Node.js.
+  This is a team profile generator which user can quickly and easily generate a team profile webpage with all the team members’ summary by using a Command line. This application is created by JavaScript and Node.js. <br/><br/>![Generated HTML Outcome](./assets/image/final-webpage.JPG)
 
   ## Table of Contents
   * [Installation](#installation)
