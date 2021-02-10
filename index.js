@@ -16,17 +16,17 @@ const generatePage = require('./src/generate-profile.js');
 const employees = [];
 
 // prompt the user with the questions
-const promptUser = () => {
+const addManager = () => {
     inquirer.prompt([
         {
             type: 'input',
             name: 'name',
-            message: "What's the employee's name?",
+            message: "What's the manager's name?",
             validate: nameInput => {
                 if (nameInput) {
                   return true;
                 } else {
-                  console.log("Please enter emplyee's name!");
+                  console.log("Please enter manager's name!");
                   return false;
                 }
             }
@@ -34,12 +34,12 @@ const promptUser = () => {
         {
             type: 'input',
             name: 'email',
-            message: "What's the employee's email address?",
+            message: "What's the manager's email address?",
             validate: emailInput => {
-                if (emailInput) {
+                if (emailInput.match(/\S+@\S+\.\S+/)) {
                   return true;
                 } else {
-                  console.log("Please enter emplyee's email address!");
+                  console.log("Please enter valid email address!");
                   return false;
                 }
             }
@@ -47,56 +47,92 @@ const promptUser = () => {
         {
             type: 'input',
             name: 'id',
-            message: "What's the employee's id number?",
+            message: "What's the manager's id number?",
             validate: idInput => {
                 if (idInput) {
                   return true;
                 } else {
-                  console.log("Please enter emplyee's id number!");
+                  console.log("Please enter manager's id number!");
                   return false;
                 }
             }
         },
         {
-            type: 'list',
-            name: 'role',
-            message: "What's the employee's postion/title at your company?",
-            choices: ['Manager', 'Engineer', 'Intern']
+            type: 'input',
+            name: 'office',
+            message: "Please input manager's office number",
+            validate: officeInput => {
+                if (officeInput) {
+                  return true;
+                } else {
+                  console.log("Please enter manager's office number!");
+                  return false;
+                }
+            }
         }
     ])
-    // separate the role of the employees
+    // push the manager information to employees array
+    .then(function(res) {
+        const manager = new Manager(res.name, res.id, res.email, res.office, 'Manager');
+        employees.push(manager);
+        addEmployee();
+    })  
+};
+
+// 
+const addEmployee = () => {
+    inquirer.prompt([
+        {
+           type: 'list',
+           name: 'role',
+           message: "What's the employee's postion/title at your company?",
+           choices: ['Engineer', 'Intern']
+        }
+    ])
     .then(function(response) {
         switch (response.role) {
-            // get the office number if the role is manager
-            case 'Manager':
+            // prompt user to input engineer's information
+            case 'Engineer':
                 inquirer.prompt([
                     {
                         type: 'input',
-                        name: 'office',
-                        message: "Please input manager's office number",
-                        validate: officeInput => {
-                            if (officeInput) {
+                        name: 'name',
+                        message: "What's the engineer's name?",
+                        validate: nameInput => {
+                            if (nameInput) {
                               return true;
                             } else {
-                              console.log("Please enter manager's office number!");
+                              console.log("Please enter engineer's name!");
                               return false;
                             }
                         }
-                    }
-                ])
-                // push the manager information to employees array
-                .then(function(res) {
-                    const officeNumber = res.office;
-                    const manager = new Manager(response.name, response.id, response.email, officeNumber, 'Manager');
-                    employees.push(manager);
-                }) 
-                .then(function() {
-                    addMore();
-                });
-                break;
-            // get the github username if the role is engineer
-            case 'Engineer':
-                inquirer.prompt([
+                    },
+                    {
+                        type: 'input',
+                        name: 'email',
+                        message: "What's the engineer's email address?",
+                        validate: emailInput => {
+                            if (emailInput.match(/\S+@\S+\.\S+/)) {
+                              return true;
+                            } else {
+                              console.log("Please enter valid email address!");
+                              return false;
+                            }
+                        }
+                    },
+                    {
+                        type: 'input',
+                        name: 'id',
+                        message: "What's the engineer's id number?",
+                        validate: idInput => {
+                            if (idInput) {
+                              return true;
+                            } else {
+                              console.log("Please enter engineer's id number!");
+                              return false;
+                            }
+                        }
+                    },
                     {
                         type: 'input',
                         name: 'github',
@@ -113,17 +149,55 @@ const promptUser = () => {
                 ])
                 // push the engineer information to employees array
                 .then(function(res) {
-                    const userName = res.github;
-                    const engineer = new Engineer(response.name, response.id, response.email, userName, 'Engineer');
+                    const engineer = new Engineer(res.name, res.id, res.email, res.github, 'Engineer');
                     employees.push(engineer);
                 })
                 .then(function() {
                     addMore();
                 });
                 break;
-            // get the school information if the role is intern
+             // prompt user to input intern's information
             case 'Intern':
                 inquirer.prompt([
+                    {
+                        type: 'input',
+                        name: 'name',
+                        message: "What's the intern's name?",
+                        validate: nameInput => {
+                            if (nameInput) {
+                              return true;
+                            } else {
+                              console.log("Please enter intern's name!");
+                              return false;
+                            }
+                        }
+                    },
+                    {
+                        type: 'input',
+                        name: 'email',
+                        message: "What's the intern's email address?",
+                        validate: emailInput => {
+                            if (emailInput.match(/\S+@\S+\.\S+/)) {
+                              return true;
+                            } else {
+                              console.log("Please enter valid email address!");
+                              return false;
+                            }
+                        }
+                    },
+                    {
+                        type: 'input',
+                        name: 'id',
+                        message: "What's the intern's id number?",
+                        validate: idInput => {
+                            if (idInput) {
+                              return true;
+                            } else {
+                              console.log("Please enter intern's id number!");
+                              return false;
+                            }
+                        }
+                    },
                     {
                         type: 'input',
                         name: 'school',
@@ -137,25 +211,21 @@ const promptUser = () => {
                             }
                         }
                     }
-                ])
+                ]) 
                 // push the intern information to employees array
                 .then(function(res) {
-                    const school = res.school;
-                    const intern = new Intern(response.name, response.id, response.email, school, 'Intern');
+                    const intern = new Intern(res.name, res.id, res.email, res.school, 'Intern');
                     employees.push(intern);
                 })
                 .then(function() {
                     addMore();
                 });
-                break;      
+                break;                            
         }
     })
-    .then(function() {
+}
 
-    });
-};
-
-// check if the user wants to add more employees to the profile
+// check if the manager wants to add more employees to the profile
 const addMore = () => {
     inquirer.prompt([
         {
@@ -167,7 +237,7 @@ const addMore = () => {
     ])
     .then(function(res) {
         if (res.confirmAdd) {
-            promptUser();
+            addEmployee();
         } else {
             console.log('Completed');
             completedFile(employees);
@@ -184,8 +254,8 @@ function completedFile(employees) {
 
 
 function init() {
-    console.log("Please input employee's information");
-    promptUser();
+    console.log("Thank you for using Team Profile Generator, please input team manager's information");
+    addManager();
 };
 
 // Function call to initialize app
