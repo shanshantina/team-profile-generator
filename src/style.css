@@ -1,9 +1,9 @@
 :root {
-    --fontcolor: #360568;
+    --fontcolor: #2d0a50;
     --bodygradient: linear-gradient(0deg, #b8d0eb 10%, #b298dc 60%, #b8d0eb 90%);
     --jumbogradient: linear-gradient(0deg, #512982 16%, #b298dc 52%, #512982 90%);
     --cardgradient: linear-gradient(0deg, #512982 16%, #3a1163 52%, #512982 90%);
-    --cardbody: #c5b2e2;
+    --cardbody: #d4c9e4;
     --noto: 'Noto Serif', serif;
 }
 
